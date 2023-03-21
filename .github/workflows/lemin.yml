@@ -10,7 +10,7 @@ on:
 
 env:
   EXECUTABLES: lem_in
-  MIRROR_URL: git@github.com:EpitechPromo2027/B-CPE-200-MAR-2-1-lemin-benjamin.lavallee.git
+  MIRROR_URL: git@github.com:EpitechPromo2027/B-CPE-200-MAR-2-1-lemin-theo.fabiano.git
 
 jobs:
   check_coding_style:
