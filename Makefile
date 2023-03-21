@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2023
 ## lemin
 ## File description:
-## makefile
+## Ant-based calculation unit
 ##
 
 NAME	=	lem_in

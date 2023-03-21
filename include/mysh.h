@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2023
-** mysh.h
+** lemin
 ** File description:
-** mysh
+** Ant-based calculation unit
 */
 
 #ifndef MYSH_H_
