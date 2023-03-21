@@ -31,6 +31,7 @@ typedef struct var {
     link_t *end;
 } var_t;
 
+bool check_stock(var_t *var, char *line);
 link_t *create_link(int data);
 void create_rooms(var_t *var, int data);
 void link_parsing(var_t *var, char *line);
