@@ -28,7 +28,7 @@ typedef struct var {
 
 link_t *create_link(int data);
 void connect_links(link_t *link1, link_t *link2);
-void my_putstr_ingnore_hash(char *str);
+void my_putstr_ignore_hash(char *str);
 void read_file(var_t *var);
 
 #endif /* MYSH_H_ */

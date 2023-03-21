@@ -7,7 +7,7 @@
 
 #include "mysh.h"
 
-void my_putstr_ingnore_hash(char *str)
+void my_putstr_ignore_hash(char *str)
 {
     for (int i = 0; str[i]; i++) {
         if (str[i] == ' ' && str[i + 1] && str[i + 1] == '#') {
@@ -37,7 +37,7 @@ void read_file(var_t *var)
             write(1, "#tunnels\n", 9);
             check_tunnels = true;
         }
-        my_putstr_ingnore_hash(line);
+        my_putstr_ignore_hash(line);
     }
     write(1, "\n#moves\n", 8);
 }
