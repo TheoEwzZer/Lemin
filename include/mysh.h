@@ -15,4 +15,20 @@
     #include <stdlib.h>
     #include <unistd.h>
 
+typedef struct link {
+    int data;
+    struct link **next;
+    unsigned int next_nb;
+} link_t;
+
+typedef struct var {
+    link_t *graph;
+    unsigned int number_of_ants;
+} var_t;
+
+link_t *create_link(int data);
+void connect_links(link_t *link1, link_t *link2);
+void my_putstr_ingnore_hash(char *str);
+void read_file(var_t *var);
+
 #endif /* MYSH_H_ */
