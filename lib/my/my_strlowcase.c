@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strlowcase.c
 ** File description:
 ** Puts every letter of every word in it in lowercase.

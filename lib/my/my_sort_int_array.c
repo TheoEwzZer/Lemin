@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_sort_int_array.c
 ** File description:
 ** Sorts an integer array in ascending order, given a

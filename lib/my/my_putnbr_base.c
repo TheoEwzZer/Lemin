@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_putnbr_base.c
 ** File description:
 ** Converts and displays a decimal number into a number in a given base.

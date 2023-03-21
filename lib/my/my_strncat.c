@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strncat.c
 ** File description:
 ** Concatenates n characters of the src string to the end of the dest string.

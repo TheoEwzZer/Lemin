@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strcapitalize.c
 ** File description:
 ** Capitalizes the first letter of each word.

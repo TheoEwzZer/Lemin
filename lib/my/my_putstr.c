@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_putstr.c
 ** File description:
 ** Displays, one-by-one, the characters of a string.

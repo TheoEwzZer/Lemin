@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_char_isnum.c
 ** File description:
 ** Returns 1 if the char passed as

@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_compute_square_root.c
 ** File description:
 ** Returns the square root (if it is a whole number)

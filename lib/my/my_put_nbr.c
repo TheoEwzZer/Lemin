@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_put_nbr.c
 ** File description:
 ** Displays the number given as a parameter.

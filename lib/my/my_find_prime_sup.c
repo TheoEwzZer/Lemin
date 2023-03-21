@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_find_prime_sup.c
 ** File description:
 ** Returns the smallest prime number that is greater than,

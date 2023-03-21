@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** mysh.h
 ** File description:
 ** mysh
@@ -22,8 +22,10 @@ typedef struct link {
 } link_t;
 
 typedef struct var {
+    link_t **rooms;
     link_t *graph;
     unsigned int number_of_ants;
+    unsigned int room_nb;
 } var_t;
 
 link_t *create_link(int data);

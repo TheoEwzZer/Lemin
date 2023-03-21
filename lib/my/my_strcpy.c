@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strcpy.c
 ** File description:
 ** Copies a string into another. The destination string will

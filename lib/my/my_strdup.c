@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strdup.c
 ** File description:
 ** Allocates memory and copies the string given as argument in it.

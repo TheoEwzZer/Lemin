@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_getnbr.c
 ** File description:
 ** Returns a number, sent to the function as a string.

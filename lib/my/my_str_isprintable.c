@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_str_isprintable.c
 ** File description:
 ** Returns 1 if the string passed as parameter only

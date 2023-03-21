@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_is_prime.c
 ** File description:
 ** Returns 1 if the number is prime and 0 if not.

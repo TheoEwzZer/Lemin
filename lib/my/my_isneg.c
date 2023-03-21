@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_isneg.c
 ** File description:
 ** Displays either N if the integer passed as

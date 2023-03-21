@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_showstr.c
 ** File description:
 ** Prints a string and returns 0.

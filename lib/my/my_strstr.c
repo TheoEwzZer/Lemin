@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strstr.c
 ** File description:
 ** Reproduce the behavior of the strstr function.

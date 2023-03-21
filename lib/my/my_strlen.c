@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_strlen.c
 ** File description:
 ** Counts and returns the number of characters

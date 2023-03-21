@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2022
+** EPITECH PROJECT, 2023
 ** my_compute_power_rec.c
 ** File description:
 ** Recursive function that returns the first argument
