@@ -39,6 +39,7 @@
 Mkfile.old
 Module.symvers
 dkms.conf
+gmin.pl
 lem_in
 maps
 modules.order
