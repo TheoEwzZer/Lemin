@@ -8,12 +8,11 @@
 
 int my_strlen(char const *str);
 
-char *my_strncpy(char *dest, char const *src, int n)
+char *my_strncpy(char *dest, char const *src, unsigned int n)
 {
-    int len = my_strlen(src);
-    int i = 0;
-    for (i ; i <= len && i < n; i++) {
+    unsigned int len = my_strlen(src);
+
+    for (unsigned int i = 0; i <= len && i < n; i++)
         dest[i] = src[i];
-    }
     return dest;
 }

@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     var->output = malloc(sizeof(char) * BUFFER_SIZE);
     var->tunnel_nb = 0;
     var->room = NULL;
+    var->check_tunnels = false;
     for (unsigned int i = 0; i < BUFFER_SIZE; i++)
         var->output[i] = '\0';
     if (argc != 1)

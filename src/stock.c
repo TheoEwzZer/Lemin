@@ -15,7 +15,7 @@ int stock_start(var_t *var)
     my_strcat(var->output, "##start\n");
     getline(&line, &size, stdin);
     my_strcat(var->output, line);
-    if (create_rooms(var, my_getnbr(line)) == 84)
+    if (create_rooms(var, getroom(line)) == 84)
         return 84;
     var->graph = var->room[var->room_nb - 1];
     return 0;
@@ -29,10 +29,10 @@ int stock_end(var_t *var)
     my_strcat(var->output, "##end\n");
     getline(&line, &size, stdin);
     my_strcat(var->output, line);
-    if (create_rooms(var, my_getnbr(line)) == 84)
+    if (create_rooms(var, getroom(line)) == 84)
         return 84;
     var->end = var->room[var->room_nb - 1];
-    var->end_data = my_getnbr(line);
+    var->end_data = getroom(line);
     return 0;
 }
 

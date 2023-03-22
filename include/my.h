@@ -21,7 +21,7 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strdup(char const *src);
 char *my_strlowcase(char *str);
 char *my_strncat(char *dest, char const *src, int nb);
-char *my_strncpy(char *dest, char const *src, int n);
+char *my_strncpy(char *dest, char const *src, unsigned int n);
 char *my_strstr(char *str, char const *to_find);
 char *my_strupcase(char *str);
 int check_end(int end, char *str_tmp);

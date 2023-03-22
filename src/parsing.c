@@ -24,35 +24,19 @@ void my_strcat_ignore_hash(char *dest, const char *src)
     dest[dest_len + i] = '\0';
 }
 
-int create_rooms(var_t *var, int data)
-{
-    link_t **new_rooms = NULL;
-
-    for (unsigned int i = 0; var->room && var->room[i]; i++) {
-        if (var->room[i]->data == data)
-            return 84;
-    }
-    new_rooms = malloc(sizeof(link_t *) * (unsigned long)(var->room_nb + 2));
-    for (unsigned int i = 0; i < var->room_nb; i++)
-        new_rooms[i] = var->room[i];
-    new_rooms[var->room_nb] = create_link(data);
-    var->room_nb++;
-    new_rooms[var->room_nb] = NULL;
-    var->room = new_rooms;
-    return 0;
-}
-
 int link_parsing(var_t *var, char *line)
 {
     link_t *link1 = NULL;
     link_t *link2 = NULL;
+    char *room = getroom(line);
+    char *room2 = getroom(line + my_strlen(room) + 1);
 
     if (!line || !var->room)
         return 84;
     for (unsigned int i = 0; var->room[i]; i++) {
-        if (var->room[i]->data == my_getnbr(line))
+        if (!my_strcmp(var->room[i]->data, room))
             link1 = var->room[i];
-        if (var->room[i]->data == my_getnbr(line + 2))
+        if (!my_strcmp(var->room[i]->data, room2))
             link2 = var->room[i];
     }
     if (links(var, link1, link2) == 84)
@@ -60,22 +44,32 @@ int link_parsing(var_t *var, char *line)
     return 0;
 }
 
+bool is_tunnel(char *line)
+{
+    for (unsigned int i = 0; line[i]; i++) {
+        if (line[i] == ' ')
+            return false;
+        if (line[i] == '-')
+            return true;
+    }
+    return false;
+}
+
 int read_file2(var_t *var, char *line)
 {
     int stock = check_stock(var, line);
-    bool check_tunnels = false;
 
     if (stock == 84)
         return 84;
     if (stock == 1 || line[0] == '#')
         return 0;
-    if (line[1] == '-' && !check_tunnels) {
+    if (is_tunnel(line) && !var->check_tunnels) {
         my_strcat(var->output, "#tunnels\n");
-        check_tunnels = true;
+        var->check_tunnels = true;
     }
     my_strcat_ignore_hash(var->output, line);
-    if (!check_tunnels) {
-        if (create_rooms(var, my_getnbr(line)) == 84)
+    if (!var->check_tunnels) {
+        if (create_rooms(var, getroom(line)) == 84)
             return 84;
     } else if (link_parsing(var, line) == 84) {
         return 84;

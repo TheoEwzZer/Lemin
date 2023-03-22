@@ -7,7 +7,7 @@
 
 #include "mysh.h"
 
-link_t *create_link(int data)
+link_t *create_link(char *data)
 {
     link_t *new_link = malloc(sizeof(link_t));
 
@@ -23,10 +23,10 @@ void print_data_of_connected_links(link_t* link)
     if (!link)
         return;
     write(1, "Data of connected links for link ", 33);
-    my_put_nbr(link->data, 0);
+    write(1, link->data, my_strlen(link->data));
     write(1, ":\n", 2);
     for (unsigned int i = 0; i < link->next_nb; i++) {
-        my_put_nbr(link->next[i]->data, 0);
+        write(1, link->next[i]->data, my_strlen(link->next[i]->data));
         write(1, "\n", 1);
     }
 }
@@ -37,7 +37,7 @@ int links(var_t *var, link_t *link1, link_t *link2)
 
     if (!link1 || !link2)
         return 84;
-    if (link1->data == link2->data)
+    if (!my_strcmp(link1->data, link2->data))
         return 84;
     new_next = malloc(sizeof(link_t *) * (unsigned long)(link1->next_nb + 2));
     for (unsigned int i = 0; i < link1->next_nb; i++)
