@@ -7,40 +7,46 @@
 
 #include "mysh.h"
 
-void stock_start(var_t *var)
+int stock_start(var_t *var)
 {
     char *line = NULL;
     size_t size = 0;
 
-    write(1, "#start\n", 7);
+    my_strcat(var->output, "##start\n");
     getline(&line, &size, stdin);
-    my_putstr(line);
-    create_rooms(var, my_getnbr(line));
+    my_strcat(var->output, line);
+    if (create_rooms(var, my_getnbr(line)) == 84)
+        return 84;
     var->graph = var->room[var->room_nb - 1];
+    return 0;
 }
 
-void stock_end(var_t *var)
+int stock_end(var_t *var)
 {
     char *line = NULL;
     size_t size = 0;
 
-    write(1, "#end\n", 5);
+    my_strcat(var->output, "##end\n");
     getline(&line, &size, stdin);
-    my_putstr(line);
-    create_rooms(var, my_getnbr(line));
+    my_strcat(var->output, line);
+    if (create_rooms(var, my_getnbr(line)) == 84)
+        return 84;
     var->end = var->room[var->room_nb - 1];
     var->end_data = my_getnbr(line);
+    return 0;
 }
 
-bool check_stock(var_t *var, char *line)
+int check_stock(var_t *var, char *line)
 {
-    if (!my_strcmp(line, "##start\n")) {
-        stock_start(var);
-        return true;
+    if (!my_strncmp(line, "##start", 7)) {
+        if (stock_start(var) == 84)
+            return 84;
+        return 1;
     }
-    if (!my_strcmp(line, "##end\n")) {
-        stock_end(var);
-        return true;
+    if (!my_strncmp(line, "##end", 5)) {
+        if (stock_end(var) == 84)
+            return 84;
+        return 1;
     }
-    return false;
+    return 0;
 }

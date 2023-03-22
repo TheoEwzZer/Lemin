@@ -15,6 +15,8 @@
     #include <stdlib.h>
     #include <unistd.h>
 
+    #define BUFFER_SIZE 1000
+
 typedef struct link {
     bool visited;
     int data;
@@ -23,24 +25,26 @@ typedef struct link {
 } link_t;
 
 typedef struct var {
-    link_t **room;
-    link_t *graph;
-    unsigned int number_of_ants;
-    unsigned int room_nb;
+    char *output;
     int end_data;
+    int number_of_ants;
+    link_t **room;
     link_t *end;
+    link_t *graph;
+    unsigned int room_nb;
+    unsigned int tunnel_nb;
 } var_t;
 
-bool check_stock(var_t *var, char *line);
+int check_stock(var_t *var, char *line);
+int create_rooms(var_t *var, int data);
+int link_parsing(var_t *var, char *line);
+int links(var_t *var, link_t *link1, link_t *link2);
+int read_file(var_t *var);
+int read_file2(var_t *var, char *line);
+int stock_end(var_t *var);
+int stock_start(var_t *var);
 link_t *create_link(int data);
-void create_rooms(var_t *var, int data);
-void link_parsing(var_t *var, char *line);
-void links(link_t *link1, link_t *link2);
-void my_putstr_ignore_hash(char *str);
+void my_strcat_ignore_hash(char *dest, const char *src);
 void print_data_of_connected_links(link_t* link);
-void read_file(var_t *var);
-void read_file2(var_t *var, char *line, size_t size, bool check_tunnels);
-void stock_end(var_t *var);
-void stock_start(var_t *var);
 
 #endif /* MYSH_H_ */

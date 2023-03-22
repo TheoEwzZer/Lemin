@@ -31,12 +31,14 @@ void print_data_of_connected_links(link_t* link)
     }
 }
 
-void links(link_t *link1, link_t *link2)
+int links(var_t *var, link_t *link1, link_t *link2)
 {
     link_t **new_next = NULL;
 
     if (!link1 || !link2)
-        return;
+        return 84;
+    if (link1->data == link2->data)
+        return 84;
     new_next = malloc(sizeof(link_t *) * (unsigned long)(link1->next_nb + 2));
     for (unsigned int i = 0; i < link1->next_nb; i++)
         new_next[i] = link1->next[i];
@@ -44,4 +46,6 @@ void links(link_t *link1, link_t *link2)
     new_next[link1->next_nb + 1] = NULL;
     link1->next = new_next;
     link1->next_nb++;
+    var->tunnel_nb++;
+    return 0;
 }
