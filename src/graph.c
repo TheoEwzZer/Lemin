@@ -35,12 +35,8 @@ int links(var_t *var, link_t *link1, link_t *link2)
 {
     link_t **new_next = NULL;
 
-    if (!link1) {
-        write(2, "Error: Try to link a room that doesn't exist.\n", 46);
-        return 84;
-    }
-    if (!link2) {
-        write(2, "Error: Try to link to a room that doesn't exist.\n", 49);
+    if (!link1 || !link2) {
+        write(2, "Error: Link a non-existent room.\n", 34);
         return 84;
     }
     if (!my_strcmp(link1->data, link2->data)) {

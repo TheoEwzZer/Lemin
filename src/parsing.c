@@ -83,12 +83,9 @@ int read_file(var_t *var)
 {
     char *line = NULL;
     size_t size = 0;
-
     while (getline(&line, &size, stdin) != -1) {
-        var->number_of_ants = my_getnbr(line);
-        if (var->number_of_ants <= 0) {
-            write(2, "Error: Invalid number of ants.\n", 31);
-            return 84;
+        if ((var->number_of_ants = my_getnbr(line)) <= 0) {
+            write(2, "Error: Invalid number of ants.\n", 31); return 84;
         }
         my_strcat(var->output, "#number_of_ants\n");
         my_strcat(var->output, line);
@@ -98,12 +95,9 @@ int read_file(var_t *var)
     while (getline(&line, &size, stdin) != -1) {
         if (read_file2(var, line) == 84)
             return 84;
-    }
-    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
-        write(2, "Error: Invalid file.\n", 21);
-        return 84;
-    }
-    if (var->output[my_strlen(var->output) - 1] != '\n')
+    } if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
+        write(2, "Error: Invalid file.\n", 21); return 84;
+    } if (var->output[my_strlen(var->output) - 1] != '\n')
         my_strcat(var->output, "\n");
     my_strcat(var->output, "#moves\n");
     return 0;
