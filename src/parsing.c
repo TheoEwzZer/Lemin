@@ -31,8 +31,10 @@ int link_parsing(var_t *var, char *line)
     char *room = getroom(line);
     char *room2 = getroom(line + my_strlen(room) + 1);
 
-    if (!line || !var->room)
+    if (!line || !var->room) {
+        write(2, "Error: Invalid link.\n", 21);
         return 84;
+    }
     for (unsigned int i = 0; var->room[i]; i++) {
         if (!my_strcmp(var->room[i]->data, room))
             link1 = var->room[i];
@@ -61,7 +63,7 @@ int read_file2(var_t *var, char *line)
 
     if (stock == 84)
         return 84;
-    if (stock == 1 || line[0] == '#')
+    if (stock == 1 || line[0] == '#' || line[0] == '\n')
         return 0;
     if (is_tunnel(line) && !var->check_tunnels) {
         my_strcat(var->output, "#tunnels\n");
@@ -84,8 +86,10 @@ int read_file(var_t *var)
 
     while (getline(&line, &size, stdin) != -1) {
         var->number_of_ants = my_getnbr(line);
-        if (var->number_of_ants <= 0)
+        if (var->number_of_ants <= 0) {
+            write(2, "Error: Invalid number of ants.\n", 31);
             return 84;
+        }
         my_strcat(var->output, "#number_of_ants\n");
         my_strcat(var->output, line);
         my_strcat(var->output, "#rooms\n");
@@ -95,8 +99,12 @@ int read_file(var_t *var)
         if (read_file2(var, line) == 84)
             return 84;
     }
-    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end)
+    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
+        write(2, "Error: Invalid file.\n", 21);
         return 84;
-    my_strcat(var->output, "\n#moves\n");
+    }
+    if (var->output[my_strlen(var->output) - 1] != '\n')
+        my_strcat(var->output, "\n");
+    my_strcat(var->output, "#moves\n");
     return 0;
 }

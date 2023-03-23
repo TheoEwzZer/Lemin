@@ -18,8 +18,10 @@ int main(int argc, char **argv)
     var->check_tunnels = false;
     for (unsigned int i = 0; i < BUFFER_SIZE; i++)
         var->output[i] = '\0';
-    if (argc != 1)
+    if (argc != 1) {
+        write(2, "Error: Invalid number of arguments.\n", 36);
         return 84;
+    }
     if (read_file(var) == 84)
         return 84;
     my_putstr(var->output);
