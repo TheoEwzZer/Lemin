@@ -32,7 +32,6 @@ int stock_end(var_t *var)
     if (create_rooms(var, getroom(line)) == 84)
         return 84;
     var->end = var->room[var->room_nb - 1];
-    var->end_data = getroom(line);
     return 0;
 }
 

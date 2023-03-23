@@ -7,31 +7,76 @@
 
 #include "mysh.h"
 
-char *getroom(char *input)
+char *getroom_tunnel(char *input)
 {
     char *room = NULL;
     unsigned int end_room = 0;
     unsigned int len = my_strlen(input);
-    unsigned int start_room = 0;
 
-    while (start_room < len && input[start_room] == ' ')
-        start_room++;
-    if (start_room == len)
+    if (input[0] == ' ' || input[0] == '-' || input[0] == '\n' || !len)
         return NULL;
-    end_room = start_room;
     while (end_room < len && input[end_room] != ' '
     && input[end_room] != '-' && input[end_room] != '\n')
         end_room++;
-    room = malloc(sizeof(char) * (end_room - start_room + 1));
-    my_strncpy(room, input + start_room, end_room - start_room);
-    room[end_room - start_room] = '\0';
+    room = malloc(sizeof(char) * (end_room + 1));
+    my_strncpy(room, input, end_room);
+    room[end_room] = '\0';
     return room;
+}
+
+char *getroom2(unsigned int end_room, char *input,
+unsigned int num_words, bool new)
+{
+    unsigned int len = my_strlen(input);
+    char *room = malloc(sizeof(char) * (end_room + 1));
+    my_strncpy(room, input, end_room);
+    room[end_room] = '\0';
+    for (unsigned int i = 0; i < len; i++) {
+        if (input[i] == ' ' || input[i] == '-' || input[i] == '\n') {
+            new = true;
+        } if (new && input[i] != ' ' && input[i] != '-' && input[i] != '\n') {
+            num_words++;
+            new = false;
+        } if (input[i] == '#') {
+            num_words--;
+            break;
+        }
+    }
+    if (num_words != 3) {
+        free(room);
+        return NULL;
+    }
+    return room;
+}
+
+char *getroom(char *input)
+{
+    unsigned int end_room = 0;
+    unsigned int len = my_strlen(input);
+    unsigned int num_words = 0;
+    bool new_word = true;
+
+    if (input[0] == ' ' || input[0] == '-' || input[0] == '\n' || !len)
+        return NULL;
+    while (end_room < len && input[end_room] != ' '
+    && input[end_room] != '-' && input[end_room] != '\n') {
+        end_room++;
+        if (new_word) {
+            num_words++;
+            new_word = false;
+        }
+    }
+    return getroom2(end_room, input, num_words, new_word);
 }
 
 int create_rooms(var_t *var, char *data)
 {
     link_t **new_rooms = NULL;
 
+    if (!data) {
+        write(2, "Error: Invalid room.\n", 21);
+        return 84;
+    }
     for (unsigned int i = 0; var->room && var->room[i]; i++) {
         if (!my_strcmp(var->room[i]->data, data)) {
             write(2, "Error: Room already exists.\n", 28);

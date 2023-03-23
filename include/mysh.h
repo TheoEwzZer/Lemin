@@ -15,7 +15,7 @@
     #include <stdlib.h>
     #include <unistd.h>
 
-    #define BUFFER_SIZE 1000
+    #define BUFFER_SIZE 150000
 
 typedef struct link {
     bool visited;
@@ -26,7 +26,6 @@ typedef struct link {
 
 typedef struct var {
     bool check_tunnels;
-    char *end_data;
     char *output;
     int number_of_ants;
     link_t **room;
@@ -38,6 +37,9 @@ typedef struct var {
 
 bool is_tunnel(char *line);
 char *getroom(char *input);
+char *getroom2(unsigned int end_room, char *input,
+unsigned int num_words, bool new_word);
+char *getroom_tunnel(char *input);
 int check_stock(var_t *var, char *line);
 int create_rooms(var_t *var, char *data);
 int link_parsing(var_t *var, char *line);

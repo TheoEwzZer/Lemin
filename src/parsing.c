@@ -28,10 +28,10 @@ int link_parsing(var_t *var, char *line)
 {
     link_t *link1 = NULL;
     link_t *link2 = NULL;
-    char *room = getroom(line);
-    char *room2 = getroom(line + my_strlen(room) + 1);
+    char *room = getroom_tunnel(line);
+    char *room2 = getroom_tunnel(line + my_strlen(room) + 1);
 
-    if (!line || !var->room) {
+    if (!line || !var->room || !room || !room2) {
         write(2, "Error: Invalid link.\n", 21);
         return 84;
     }
