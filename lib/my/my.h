@@ -6,6 +6,7 @@
 */
 
 #include <stdarg.h>
+#include <stddef.h>
 
 #ifndef MY_H_
 
@@ -21,7 +22,7 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strdup(char const *src);
 char *my_strlowcase(char *str);
 char *my_strncat(char *dest, char const *src, int nb);
-char *my_strncpy(char *dest, char const *src, unsigned int n);
+char *my_strncpy(char *dest, char const *src, size_t size);
 char *my_strstr(char *str, char const *to_find);
 char *my_strupcase(char *str);
 int check_end(int end, char *str_tmp);
@@ -66,7 +67,7 @@ int word_count(const char *str);
 int zero_before(char *array, int count);
 int zero_before_zero(char *array, int count);
 long power10(int len);
-unsigned int my_strlen(char const *str);
+size_t my_strlen(char const *str);
 unsigned int my_strlen_double(char *const *str);
 void check_separator_lower(int i, char *str);
 void check_separator_upper(int i, char *str);

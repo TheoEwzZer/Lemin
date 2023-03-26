@@ -5,7 +5,7 @@
 ** Ant-based calculation unit
 */
 
-#include "mysh.h"
+#include "lemin.h"
 
 link_t *create_link(char *data)
 {
@@ -25,7 +25,7 @@ void print_data_of_connected_links(link_t* link)
     write(1, "Data of connected links for link ", 33);
     write(1, link->data, my_strlen(link->data));
     write(1, ":\n", 2);
-    for (unsigned int i = 0; i < link->next_nb; i++) {
+    for (size_t i = 0; i < link->next_nb; i++) {
         write(1, link->next[i]->data, my_strlen(link->next[i]->data));
         write(1, "\n", 1);
     }
@@ -44,7 +44,7 @@ int links(var_t *var, link_t *link1, link_t *link2)
         return 84;
     }
     new_next = malloc(sizeof(link_t *) * (unsigned long)(link1->next_nb + 2));
-    for (unsigned int i = 0; i < link1->next_nb; i++)
+    for (size_t i = 0; i < link1->next_nb; i++)
         new_next[i] = link1->next[i];
     new_next[link1->next_nb] = link2;
     new_next[link1->next_nb + 1] = NULL;

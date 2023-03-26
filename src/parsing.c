@@ -5,13 +5,13 @@
 ** Ant-based calculation unit
 */
 
-#include "mysh.h"
+#include "lemin.h"
 
 void my_strcat_ignore_hash(char *dest, const char *src)
 {
-    unsigned int dest_len = my_strlen(dest);
-    unsigned int src_len = my_strlen(src);
-    unsigned int i = 0;
+    size_t dest_len = my_strlen(dest);
+    size_t src_len = my_strlen(src);
+    size_t i = 0;
 
     for (; i < src_len; i++) {
         if (src[i] == ' ' && src[i + 1] == '#') {
@@ -35,7 +35,7 @@ int link_parsing(var_t *var, char *line)
         write(2, "Error: Invalid link.\n", 21);
         return 84;
     }
-    for (unsigned int i = 0; var->room[i]; i++) {
+    for (size_t i = 0; var->room[i]; i++) {
         if (!my_strcmp(var->room[i]->data, room))
             link1 = var->room[i];
         if (!my_strcmp(var->room[i]->data, room2))
@@ -48,7 +48,7 @@ int link_parsing(var_t *var, char *line)
 
 bool is_tunnel(char *line)
 {
-    for (unsigned int i = 0; line[i]; i++) {
+    for (size_t i = 0; line[i]; i++) {
         if (line[i] == ' ')
             return false;
         if (line[i] == '-')
