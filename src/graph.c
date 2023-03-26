@@ -13,6 +13,7 @@ link_t *create_link(char *data)
 
     new_link->data = data;
     new_link->visited = false;
+    new_link->used = false;
     new_link->next_nb = 0;
     new_link->next = NULL;
     return new_link;
