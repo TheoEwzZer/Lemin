@@ -16,6 +16,7 @@ void init_list(list_t *list)
 void add_to_list(var_t *var, list_t *list, char *data)
 {
     node_t *node = malloc(sizeof(node_t));
+
     node->data = data;
     node->prev = list->tail;
     node->next = NULL;
@@ -62,10 +63,12 @@ void dfs(link_t *node, var_t *var)
         current = var->path.head;
         add_to_path(current, var);
         (var->path_count)++;
-        free(var->path.head);
-        init_list(&var->path);
+        free_list(&var->path);
     }
     for (size_t i = 0; i < node->next_nb; i++)
         dfs2(node, var, i);
     node->visited = false;
+    current = var->path.head;
+    while (current)
+        remove_from_path(&current, &var->path, node->data);
 }

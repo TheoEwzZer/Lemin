@@ -20,8 +20,6 @@ void swap(var_t *var, size_t j)
 
 void sort_paths(var_t *var)
 {
-    list_t *tmp = NULL;
-
     for (size_t i = 0; i < var->path_count; i++) {
         for (size_t j = 0; j < var->path_count - 1; j++)
             swap(var, j);

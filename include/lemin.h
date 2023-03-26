@@ -70,10 +70,15 @@ void add_to_list(var_t *var, list_t *list, char *data);
 void add_to_path(node_t *current, var_t *var);
 void dfs(link_t *node, var_t *var);
 void dfs2(link_t *node, var_t *var, size_t i);
+void free_list(list_t *list);
+void free_path_table(var_t *var);
+void init(var_t *var);
 void init_list(list_t *list);
 void my_strcat_ignore_hash(char *dest, const char *src);
 void print_data_of_connected_links(link_t* link);
 void print_paths(var_t *var);
+void remove_from_path(node_t **current, list_t *list, char *data);
 void sort_paths(var_t *var);
+void swap(var_t *var, size_t j);
 
 #endif /* MYSH_H_ */

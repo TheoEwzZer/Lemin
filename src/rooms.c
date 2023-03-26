@@ -43,7 +43,7 @@ char *getroom2(size_t end_room, char *input, size_t num_words, bool new)
     }
     if (num_words != 3) {
         free(room);
-        return NULL;
+        room = NULL;
     }
     return room;
 }
