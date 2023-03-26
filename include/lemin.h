@@ -17,11 +17,23 @@
 
     #define BUFFER_SIZE 150000
 
+typedef struct node {
+    char *data;
+    struct node *prev;
+    struct node *next;
+} node_t;
+
+typedef struct list {
+    struct node *head;
+    struct node *tail;
+} list_t;
+
 typedef struct link {
     bool visited;
     char *data;
+    size_t next_nb;
     struct link **next;
-    unsigned int next_nb;
+    bool used;
 } link_t;
 
 typedef struct var {
@@ -33,12 +45,14 @@ typedef struct var {
     link_t *graph;
     unsigned int room_nb;
     unsigned int tunnel_nb;
+    list_t path;
+    list_t **paths;
+    unsigned int path_count;
 } var_t;
 
 bool is_tunnel(char *line);
 char *getroom(char *input);
-char *getroom2(unsigned int end_room, char *input,
-unsigned int num_words, bool new_word);
+char *getroom2(size_t end_room, char *input, size_t num_words, bool new);
 char *getroom_tunnel(char *input);
 int check_stock(var_t *var, char *line);
 int create_rooms(var_t *var, char *data);
@@ -49,7 +63,13 @@ int read_file2(var_t *var, char *line);
 int stock_end(var_t *var);
 int stock_start(var_t *var);
 link_t *create_link(char *data);
+void add_to_list(list_t *list, char *data);
+void add_to_path(node_t *current, var_t *var);
+void dfs(link_t *node, var_t *var);
+void dfs2(link_t *node, var_t *var, size_t i);
+void init_list(list_t *list);
 void my_strcat_ignore_hash(char *dest, const char *src);
 void print_data_of_connected_links(link_t* link);
+void print_paths(var_t *var);
 
 #endif /* MYSH_H_ */
