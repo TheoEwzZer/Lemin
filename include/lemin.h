@@ -21,6 +21,9 @@ typedef struct node {
     char *data;
     struct node *prev;
     struct node *next;
+    size_t size;
+    size_t number_of_ants;
+    size_t path_number;
 } node_t;
 
 typedef struct list {
@@ -63,7 +66,7 @@ int read_file2(var_t *var, char *line);
 int stock_end(var_t *var);
 int stock_start(var_t *var);
 link_t *create_link(char *data);
-void add_to_list(list_t *list, char *data);
+void add_to_list(var_t *var, list_t *list, char *data);
 void add_to_path(node_t *current, var_t *var);
 void dfs(link_t *node, var_t *var);
 void dfs2(link_t *node, var_t *var, size_t i);
@@ -71,5 +74,6 @@ void init_list(list_t *list);
 void my_strcat_ignore_hash(char *dest, const char *src);
 void print_data_of_connected_links(link_t* link);
 void print_paths(var_t *var);
+void sort_paths(var_t *var);
 
 #endif /* MYSH_H_ */

@@ -13,12 +13,15 @@ void init_list(list_t *list)
     list->tail = NULL;
 }
 
-void add_to_list(list_t *list, char *data)
+void add_to_list(var_t *var, list_t *list, char *data)
 {
     node_t *node = malloc(sizeof(node_t));
     node->data = data;
     node->prev = list->tail;
     node->next = NULL;
+    node->size = 1;
+    node->number_of_ants = 0;
+    node->path_number = var->path_count;
     if (!list->tail)
         list->head = node;
     else
@@ -37,10 +40,12 @@ void dfs2(link_t *node, var_t *var, size_t i)
 
 void add_to_path(node_t *current, var_t *var)
 {
-    add_to_list(var->paths[var->path_count], var->graph->data);
+    add_to_list(var, var->paths[var->path_count], var->graph->data);
     while (current) {
-        if (current->data != var->graph->data)
-            add_to_list(var->paths[var->path_count], current->data);
+        if (current->data != var->graph->data) {
+            add_to_list(var, var->paths[var->path_count], current->data);
+            var->paths[var->path_count]->head->size++;
+        }
         current = current->next;
     }
 }
@@ -50,7 +55,7 @@ void dfs(link_t *node, var_t *var)
     node_t *current = NULL;
 
     node->visited = true;
-    add_to_list(&var->path, node->data);
+    add_to_list(var, &var->path, node->data);
     if (node == var->end) {
         var->paths[var->path_count] = malloc(sizeof(list_t));
         init_list(var->paths[var->path_count]);
@@ -58,6 +63,7 @@ void dfs(link_t *node, var_t *var)
         add_to_path(current, var);
         (var->path_count)++;
         free(var->path.head);
+        init_list(&var->path);
     }
     for (size_t i = 0; i < node->next_nb; i++)
         dfs2(node, var, i);

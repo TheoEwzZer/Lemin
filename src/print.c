@@ -19,6 +19,8 @@ void print_paths(var_t *var)
             current = current->next;
         }
         my_putstr(current->data);
+        write(1, " ", 1);
+        my_put_nbr((long)var->paths[i]->head->size - 2, 0);
         write(1, "\n", 1);
     }
 }
