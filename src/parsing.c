@@ -84,12 +84,12 @@ int read_file(var_t *var)
     char *line = NULL;
     size_t size = 0;
     while (getline(&line, &size, stdin) != -1) {
+        if (line[0] == '#')
+            continue;
         if ((var->number_of_ants = my_getnbr(line)) <= 0) {
             write(2, "Error: Invalid number of ants.\n", 31); return 84;
-        }
-        my_strcat(var->output, "#number_of_ants\n");
-        my_strcat(var->output, line);
-        my_strcat(var->output, "#rooms\n");
+        } my_strcat(var->output, "#number_of_ants\n");
+        my_strcat(var->output, line); my_strcat(var->output, "#rooms\n");
         break;
     }
     while (getline(&line, &size, stdin) != -1) {
