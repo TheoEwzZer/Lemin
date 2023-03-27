@@ -16,6 +16,7 @@ link_t *create_link(char *data)
     new_link->used = false;
     new_link->next_nb = 0;
     new_link->next = NULL;
+    new_link->number_of_ants = 0;
     return new_link;
 }
 

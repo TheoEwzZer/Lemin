@@ -27,8 +27,8 @@ typedef struct node {
 } node_t;
 
 typedef struct list {
-    struct node *head;
-    struct node *tail;
+    node_t *head;
+    node_t *tail;
 } list_t;
 
 typedef struct link {
@@ -37,6 +37,7 @@ typedef struct link {
     size_t next_nb;
     struct link **next;
     bool used;
+    size_t number_of_ants;
 } link_t;
 
 typedef struct var {
