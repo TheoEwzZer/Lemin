@@ -24,6 +24,7 @@ typedef struct node {
     size_t size;
     size_t number_of_ants;
     size_t path_number;
+    size_t ant;
 } node_t;
 
 typedef struct list {
