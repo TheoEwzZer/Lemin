@@ -39,7 +39,6 @@ int main(int argc, char **argv)
     dfs(var->graph, var);
     sort_paths(var);
     print_paths(var);
-    send_ants(var);
     free_path_table(var);
     return 0;
 }
