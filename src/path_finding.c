@@ -24,6 +24,7 @@ void add_to_list(var_t *var, list_t *list, char *data)
     node->number_of_ants = 0;
     node->ant = -1;
     node->path_number = var->path_count;
+    node->used = false;
     if (!list->tail)
         list->head = node;
     else

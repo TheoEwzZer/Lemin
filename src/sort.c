@@ -18,10 +18,13 @@ void swap(var_t *var, size_t j)
     }
 }
 
-void sort_paths(var_t *var)
+int sort_paths(var_t *var)
 {
     for (size_t i = 0; i < var->path_count; i++) {
         for (size_t j = 0; j < var->path_count - 1; j++)
             swap(var, j);
     }
+    if (send_ants(var) == 84)
+        return 84;
+    return 0;
 }

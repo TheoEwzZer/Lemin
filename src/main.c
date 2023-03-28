@@ -20,25 +20,35 @@ void init(var_t *var)
         var->output[i] = '\0';
 }
 
+void print_moves(var_t *var)
+{
+    for (size_t i = 0; var->output[i]; i++) {
+        if (var->output[i] == ' ' && var->output[i + 1] == '\n')
+            continue;
+        write(1, &var->output[i], 1);
+    }
+}
+
 int main(int argc, char **argv)
 {
     var_t *var = malloc(sizeof(var_t));
-    size_t path_capacity = 100;
-
+    size_t path_capacity = 100; (void)argv;
     init(var);
     if (argc != 1) {
         write(2, "Error: Invalid number of arguments.\n", 36);
         return 84;
-    }
-    if (read_file(var) == 84)
+    } if (read_file(var) == 84)
         return 84;
     my_putstr(var->output);
+    free(var->output);
+    var->output = malloc(sizeof(char) * BUFFER_SIZE);
+    for (size_t i = 0; i < BUFFER_SIZE; var->output[i] = '\0', i++);
     var->paths = malloc(sizeof(list_t *) * path_capacity);
-    for (size_t i = 0; i < path_capacity; i++)
-        var->paths[i] = NULL;
+    for (size_t i = 0; i < path_capacity; var->paths[i] = NULL, i++);
     dfs(var->graph, var);
-    sort_paths(var);
-    print_paths(var);
+    if (sort_paths(var) == 84)
+        return 84;
+    print_moves(var);
     free_path_table(var);
     return 0;
 }

@@ -24,28 +24,6 @@ void my_strcat_ignore_hash(char *dest, const char *src)
     dest[dest_len + i] = '\0';
 }
 
-int link_parsing(var_t *var, char *line)
-{
-    link_t *link1 = NULL;
-    link_t *link2 = NULL;
-    char *room = getroom_tunnel(line);
-    char *room2 = getroom_tunnel(line + my_strlen(room) + 1);
-
-    if (!line || !var->room || !room || !room2) {
-        write(2, "Error: Invalid link.\n", 21);
-        return 84;
-    }
-    for (size_t i = 0; var->room[i]; i++) {
-        if (!my_strcmp(var->room[i]->data, room))
-            link1 = var->room[i];
-        if (!my_strcmp(var->room[i]->data, room2))
-            link2 = var->room[i];
-    }
-    if (links(var, link1, link2) == 84)
-        return 84;
-    return 0;
-}
-
 bool is_tunnel(char *line)
 {
     for (size_t i = 0; line[i]; i++) {
@@ -79,6 +57,25 @@ int read_file2(var_t *var, char *line)
     return 0;
 }
 
+int get_info(var_t *var)
+{
+    char *line = NULL;
+    size_t size = 0;
+
+    while (getline(&line, &size, stdin) != -1) {
+        if (read_file2(var, line) == 84)
+            return 84;
+    }
+    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
+        write(2, "Error: Invalid file.\n", 21);
+        return 84;
+    }
+    if (var->output[my_strlen(var->output) - 1] != '\n')
+        my_strcat(var->output, "\n");
+    my_strcat(var->output, "#moves\n");
+    return 0;
+}
+
 int read_file(var_t *var)
 {
     char *line = NULL;
@@ -87,18 +84,15 @@ int read_file(var_t *var)
         if (line[0] == '#')
             continue;
         if ((var->number_of_ants = my_getnbr(line)) <= 0) {
-            write(2, "Error: Invalid number of ants.\n", 31); return 84;
-        } my_strcat(var->output, "#number_of_ants\n");
-        my_strcat(var->output, line); my_strcat(var->output, "#rooms\n");
+            write(2, "Error: Invalid number of ants.\n", 31);
+            return 84;
+        }
+        my_strcat(var->output, "#number_of_ants\n");
+        my_strcat(var->output, line);
+        my_strcat(var->output, "#rooms\n");
         break;
     }
-    while (getline(&line, &size, stdin) != -1) {
-        if (read_file2(var, line) == 84)
-            return 84;
-    } if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
-        write(2, "Error: Invalid file.\n", 21); return 84;
-    } if (var->output[my_strlen(var->output) - 1] != '\n')
-        my_strcat(var->output, "\n");
-    my_strcat(var->output, "#moves\n");
+    if (get_info(var) == 84)
+        return 84;
     return 0;
 }
