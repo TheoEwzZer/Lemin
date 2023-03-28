@@ -19,7 +19,7 @@ void update(var_t *var, node_t *current)
     my_strcat(var->output, " ");
 }
 
-void travel(var_t *var, size_t i, size_t j, node_t *current)
+void process_ant_movement(var_t *var, size_t i, size_t j, node_t *current)
 {
     if (current->number_of_ants > 0 && current->next
     && current->next->ant == -1 && !current->used) {
@@ -41,15 +41,17 @@ void travel(var_t *var, size_t i, size_t j, node_t *current)
     }
 }
 
-void move_in_path(var_t *var, node_t *current, size_t i)
+void move_in_path(var_t *var, size_t i)
 {
+    node_t *current = NULL;
+
     for (size_t j = 0; j < (size_t)var->number_of_ants; j++) {
         if (var->path_assignments[i][j] == -1
         && var->paths[i]->head->number_of_ants > 0)
             continue;
         current = var->paths[i]->tail;
         while (current) {
-            travel(var, i, j, current);
+            process_ant_movement(var, i, j, current);
             current = current->prev;
             var->paths[i]->tail->ant = -1;
         }
@@ -60,7 +62,7 @@ void reset_used(var_t *var)
 {
     node_t *current = NULL;
 
-    for (size_t i = 0; i < (size_t)var->path_count; i++) {
+    for (size_t i = 0; i < var->path_count; i++) {
         current = var->paths[i]->tail;
         while (current) {
             current->used = false;
@@ -71,11 +73,9 @@ void reset_used(var_t *var)
 
 void print_ants(var_t *var)
 {
-    node_t *current = NULL;
-
     while (var->end->number_of_ants < (size_t)var->number_of_ants) {
-        for (size_t i = 0; i < (size_t)var->path_count; i++)
-            move_in_path(var, current, i);
+        for (size_t i = 0; i < var->path_count; i++)
+            move_in_path(var, i);
         my_strcat(var->output, "\n");
         reset_used(var);
     }
