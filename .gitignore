@@ -38,9 +38,9 @@
 .tmp_versions/
 Mkfile.old
 Module.symvers
+anthill
 dkms.conf
-gmin.pl
 lem_in
+lem_in2
 maps
 modules.order
-anthill
