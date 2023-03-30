@@ -6,6 +6,7 @@
 */
 
 int my_strlen(char const *str);
+int my_str_isnum(char const *str);
 
 long power10(int len)
 {
