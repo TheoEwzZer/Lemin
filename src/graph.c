@@ -20,19 +20,6 @@ link_t *create_link(char *data)
     return new_link;
 }
 
-void print_data_of_connected_links(link_t* link)
-{
-    if (!link)
-        return;
-    write(1, "Data of connected links for link ", 33);
-    write(1, link->data, my_strlen(link->data));
-    write(1, ":\n", 2);
-    for (size_t i = 0; i < link->next_nb; i++) {
-        write(1, link->next[i]->data, my_strlen(link->next[i]->data));
-        write(1, "\n", 1);
-    }
-}
-
 int links(var_t *var, link_t *link1, link_t *link2)
 {
     link_t **new_next = NULL;

@@ -86,7 +86,6 @@ void init_list(list_t *list);
 void move_in_path(var_t *var, size_t i);
 void my_strcat_ignore_hash(char *dest, const char *src);
 void print_ants(var_t *var);
-void print_data_of_connected_links(link_t* link);
 void print_moves(var_t *var);
 void print_paths(var_t *var);
 void process_ant_movement(var_t *var, size_t i, size_t j, node_t *current);
