@@ -39,9 +39,9 @@ int read_file2(var_t *var, char *line)
 {
     int stock = check_stock(var, line);
 
-    if (stock == 84)
+    if (stock == 84 || line[0] == '\n')
         return 84;
-    if (stock == 1 || line[0] == '#' || line[0] == '\n')
+    if (stock == 1 || line[0] == '#')
         return 0;
     if (is_tunnel(line) && !var->check_tunnels) {
         my_strcat(var->output, "#tunnels\n");

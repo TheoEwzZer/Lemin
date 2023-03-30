@@ -24,13 +24,16 @@ char *getroom_tunnel(char *input)
     return room;
 }
 
-char *getroom2(size_t end_room, char *input, size_t num_words, bool new)
+char *getroom2(size_t endroom, char *input, size_t num_words, bool new)
 {
     size_t len = my_strlen(input);
-    char *room = malloc(sizeof(char) * (end_room + 1));
-    my_strncpy(room, input, end_room);
-    room[end_room] = '\0';
+    char *room = malloc(sizeof(char) * (endroom + 1));
+    my_strncpy(room, input, endroom);
+    room[endroom] = '\0';
     for (size_t i = 0; i < len; i++) {
+        if (i > endroom && (input[i] < '0' || input[i] > '9') && input[i] != '-'
+        && input[i] != ' ' && input[i] != '\n' && input[i] != '#')
+            return NULL;
         if (input[i] == ' ' || input[i] == '-' || input[i] == '\n') {
             new = true;
         } if (new && input[i] != ' ' && input[i] != '-' && input[i] != '\n') {
@@ -40,11 +43,8 @@ char *getroom2(size_t end_room, char *input, size_t num_words, bool new)
             num_words--;
             break;
         }
-    }
-    if (num_words != 3) {
-        free(room);
+    } if (num_words != 3)
         room = NULL;
-    }
     return room;
 }
 
