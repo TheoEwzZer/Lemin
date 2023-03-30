@@ -17,6 +17,8 @@ int stock_start(var_t *var)
     my_strcat_ignore_hash(var->output, line);
     if (create_rooms(var, getroom(line)) == 84)
         return 84;
+    if (var->graph)
+        return 84;
     var->graph = var->room[var->room_nb - 1];
     return 0;
 }
@@ -30,6 +32,8 @@ int stock_end(var_t *var)
     getline(&line, &size, stdin);
     my_strcat_ignore_hash(var->output, line);
     if (create_rooms(var, getroom(line)) == 84)
+        return 84;
+    if (var->end)
         return 84;
     var->end = var->room[var->room_nb - 1];
     return 0;
