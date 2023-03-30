@@ -43,7 +43,7 @@ int check_stock(var_t *var, char *line)
         return 1;
     }
     if (!my_strncmp(line, "##end", 5)) {
-        if (!var->graph || stock_end(var) == 84)
+        if (stock_end(var) == 84)
             return 84;
         return 1;
     }

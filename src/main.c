@@ -10,6 +10,7 @@
 void init(var_t *var)
 {
     init_list(&var->path);
+    var->error = false;
     var->path_count = 0;
     var->room_nb = 0;
     var->output = malloc(sizeof(char) * BUFFER_SIZE);
@@ -34,13 +35,13 @@ int main(int argc, char **argv)
     var_t *var = malloc(sizeof(var_t));
     size_t path_capacity = 100; (void)argv;
     init(var);
-    if (argc != 1) {
-        write(2, "Error: Invalid number of arguments.\n", 36);
+    if (argc != 1)
         return 84;
-    } if (read_file(var) == 84)
-        return 84;
+    read_file(var);
     my_putstr(var->output);
     free(var->output);
+    if (var->error)
+        return 84;
     var->output = malloc(sizeof(char) * BUFFER_SIZE);
     for (size_t i = 0; i < BUFFER_SIZE; var->output[i] = '\0', i++);
     var->paths = malloc(sizeof(list_t *) * path_capacity);

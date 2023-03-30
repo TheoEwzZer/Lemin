@@ -44,6 +44,7 @@ typedef struct link {
 
 typedef struct var {
     bool check_tunnels;
+    bool error;
     char *output;
     int **path_assignments;
     int number_of_ants;
@@ -64,10 +65,8 @@ char *getroom_tunnel(char *input);
 char *int_to_str(int nb);
 int check_stock(var_t *var, char *line);
 int create_rooms(var_t *var, char *data);
-int get_info(var_t *var);
 int link_parsing(var_t *var, char *line);
 int links(var_t *var, link_t *link1, link_t *link2);
-int read_file(var_t *var);
 int read_file2(var_t *var, char *line);
 int send_ants(var_t *var);
 int sort_paths(var_t *var);
@@ -81,6 +80,7 @@ void dfs(link_t *node, var_t *var);
 void dfs2(link_t *node, var_t *var, size_t i);
 void free_list(list_t *list);
 void free_path_table(var_t *var);
+void get_info(var_t *var);
 void init(var_t *var);
 void init_list(list_t *list);
 void move_in_path(var_t *var, size_t i);
@@ -90,6 +90,7 @@ void print_data_of_connected_links(link_t* link);
 void print_moves(var_t *var);
 void print_paths(var_t *var);
 void process_ant_movement(var_t *var, size_t i, size_t j, node_t *current);
+void read_file(var_t *var);
 void remove_from_path(node_t **current, list_t *list, char *data);
 void reset_used(var_t *var);
 void swap(var_t *var, size_t j);

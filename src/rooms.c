@@ -72,15 +72,11 @@ int create_rooms(var_t *var, char *data)
 {
     link_t **new_rooms = NULL;
 
-    if (!data) {
-        write(2, "Error: Invalid room.\n", 21);
+    if (!data)
         return 84;
-    }
     for (size_t i = 0; var->room && var->room[i]; i++) {
-        if (!my_strcmp(var->room[i]->data, data)) {
-            write(2, "Error: Room already exists.\n", 28);
+        if (!my_strcmp(var->room[i]->data, data))
             return 84;
-        }
     }
     new_rooms = malloc(sizeof(link_t *) * (unsigned long)(var->room_nb + 2));
     for (size_t i = 0; i < var->room_nb; i++)

@@ -57,42 +57,35 @@ int read_file2(var_t *var, char *line)
     return 0;
 }
 
-int get_info(var_t *var)
+void get_info(var_t *var)
 {
     char *line = NULL;
     size_t size = 0;
 
     while (getline(&line, &size, stdin) != -1) {
         if (read_file2(var, line) == 84)
-            return 84;
+            var->error = true;
     }
-    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end) {
-        write(2, "Error: Invalid file.\n", 21);
-        return 84;
-    }
+    if (!var->room_nb || !var->tunnel_nb || !var->graph || !var->end)
+        var->error = true;
     if (var->output[my_strlen(var->output) - 1] != '\n')
         my_strcat(var->output, "\n");
     my_strcat(var->output, "#moves\n");
-    return 0;
 }
 
-int read_file(var_t *var)
+void read_file(var_t *var)
 {
     char *line = NULL;
     size_t size = 0;
     while (getline(&line, &size, stdin) != -1) {
         if (line[0] == '#')
             continue;
-        if ((var->number_of_ants = my_getnbr(line)) <= 0) {
-            write(2, "Error: Invalid number of ants.\n", 31);
-            return 84;
-        }
+        if ((var->number_of_ants = my_getnbr(line)) <= 0)
+            var->error = true;
         my_strcat(var->output, "#number_of_ants\n");
         my_strcat(var->output, line);
         my_strcat(var->output, "#rooms\n");
         break;
     }
-    if (get_info(var) == 84)
-        return 84;
-    return 0;
+    get_info(var);
 }

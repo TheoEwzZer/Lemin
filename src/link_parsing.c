@@ -14,10 +14,8 @@ int link_parsing(var_t *var, char *line)
     char *room = getroom_tunnel(line);
     char *room2 = getroom_tunnel(line + my_strlen(room) + 1);
 
-    if (!line || !var->room || !room || !room2) {
-        write(2, "Error: Invalid link.\n", 21);
+    if (!line || !var->room || !room || !room2)
         return 84;
-    }
     for (size_t i = 0; var->room[i]; i++) {
         if (!my_strcmp(var->room[i]->data, room))
             link1 = var->room[i];
