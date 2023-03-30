@@ -44,6 +44,8 @@ int str_to_int(char *tab, int len, int negative)
 
 int my_getnbr(char const *str)
 {
+    if (!my_str_isnum(str))
+        return 0;
     int start = 0;
     int negative = 0;
     while ((str[start] < 48 || str[start] > 57) && str[start] != '\0')
