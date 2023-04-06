@@ -6,15 +6,13 @@
 ** only contains digits and 0 otherwise.
 */
 
-int my_strlen(char const *str);
+#include <stddef.h>
 
 int my_str_isnum(char const *str)
 {
-    int len = my_strlen(str);
-    for (int i = 0; i < len; i++) {
-        if (str[i] != '\n' && (str[i] < 48 || str[i] > 57)) {
+    for (size_t i = 0; str[i] && str[i] != '#'; i++) {
+        if ((str[i] < '0' || str[i] > '9') && str[i] != '\n' && str[i] != ' ')
             return 0;
-        }
     }
     return 1;
 }
