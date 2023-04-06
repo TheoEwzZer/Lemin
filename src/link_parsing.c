@@ -24,5 +24,7 @@ int link_parsing(var_t *var, char *line)
     }
     if (links(var, link1, link2) == 84)
         return 84;
+    if (links(var, link2, link1) == 84)
+        return 84;
     return 0;
 }
