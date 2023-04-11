@@ -26,8 +26,6 @@ int links(var_t *var, link_t *link1, link_t *link2)
 
     if (!link1 || !link2)
         return 84;
-    if (!my_strcmp(link1->data, link2->data))
-        return 84;
     new_next = malloc(sizeof(link_t *) * (unsigned long)(link1->next_nb + 2));
     for (size_t i = 0; i < link1->next_nb; i++)
         new_next[i] = link1->next[i];
