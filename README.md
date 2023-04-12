@@ -1,12 +1,12 @@
 # Lem-in
 
-```
+```text
 binary name : lem_in
 language : C
 compilation : via Makefile, including re, clean and fclean rules
 ```
 
-```
+```text
 For this project, the only authorized function are read, write, malloc, free and getline.
 ```
 
@@ -20,7 +20,7 @@ It would be nice to build one of our own, but since we’re not really into DIY,
 On the standard input, your program must receive the anthill description the following way: first, the number of ants, then the rooms and their position and finally the tunnels (defined by the rooms they connect).
 Here is an example of input and the associated anthill:
 
-```bash
+```text
 ∼/B-CPE-200> cat input
 34
 ##start
@@ -34,21 +34,22 @@ Here is an example of input and the associated anthill:
 7 4 8
 ##end
 0 9 5
-0-
-0-
-1-
-4-
-5-
-3-
+0-4
+0-6
+1-3
+4-3
+5-2
+3-5
 #another comment
-4-
-2-
-7-
-7-
-7-
-6-
+4-2
+2-1
+7-6
+7-2
+7-4
+6-5
 ```
-```
+
+```text
 The names of the rooms won’t necessarily be numbers in order, and are less likely to be
 uninterrupted (you could even have rooms named: zdfg, 256, qwerty,... )
 ```
@@ -56,7 +57,7 @@ uninterrupted (you could even have rooms named: zdfg, 256, qwerty,... )
 The rooms’ coordinates will always be whole numbers. Please note that it is possible to insert comments by using “#” and commands by using “##”.
 “##“ start indicates the next room is the anthill entrance, and “##“ end indicates the next room is the anthill exit.
 Any unknown commands will be ignored.
-The objective of your program is to find the quickest way to make the ants cross over the anthill. To do so, each single ant need to take the shortest route (and not necessarily the easiest),  whithout walking on its peers, and avoiding traffic jams.
+The objective of your program is to find the quickest way to make the ants cross over the anthill. To do so, each single ant need to take the shortest route (and not necessarily the easiest), without walking on its peers, and avoiding traffic jams.
 
 At the beginning of the game, all of the ants are in the anthill entrance.
 The goal is to lead them to the exit room, in a minimum amount of laps.
@@ -66,11 +67,12 @@ With each lap, you can move each ant only once by following a tunnel (if the rec
 You must show the result on the standard output, in this order: number_of_ants, rooms, tunnels and then for each lap, a series of **Pn-r** where **n** is the number of the ant, and **r** the name of the room it gets into.
 In the output, you must display a comment indicating the part that will follow. These comment must be exactly like in the examples.
 
-```
+```text
 The first non compliant or empty line will lead to the end of the anthill acquisition, as
 well as its normal treatment with the data that has already been acquired.
 ```
-```
+
+```text
 It’s not as easy as snapping your fingers. Concerning what type of operation students of
 magic can perform with such a computer, all we know, today, is that electricity is more
 dependable.
@@ -82,7 +84,7 @@ Concerning the following trivial anthill:
 
 [0] - - - [2] - - - [3] - - - [1]
 
-```bash
+```text
 ∼/B-CPE-200> cat anthill
 3
 ##start
@@ -97,7 +99,7 @@ Concerning the following trivial anthill:
 3-
 ```
 
-```bash
+```text
 ∼/B-CPE-200> ./lem_in < anthill
 #number_of_ants
 3
@@ -119,21 +121,20 @@ P1-1 P2-3 P3-
 P2-1 P3-
 P3-
 ```
-There you have it, it’s over after 5 laps.
 
+There you have it, it’s over after 5 laps.
 
 Considering the following anthill:
 
-<pre>
+```text
    [2]
   / | \
 [0] | [1]
   \ | /
    [3]
-</pre>
+```
 
-
-```bash
+```text
 ∼/B-CPE-200> cat anthill
 3
 2 5 0
@@ -149,7 +150,7 @@ Considering the following anthill:
 2-
 ```
 
-```bash
+```text
 ∼/B-CPE-200> ./lem_in < anthill
 #number_of_ants
 3
@@ -171,8 +172,8 @@ P1-2 P2-
 P1-1 P2-1 P3-
 P3-
 ```
-It’s over after 3 laps.
 
+It’s over after 3 laps.
 
 ## Bonus
 
@@ -181,7 +182,6 @@ Whether in two dimensions (an overhead view) or from an ant’s point of view in
 Please note that because the commands and comments are repeated on the output of the program, it is possible to pass specific commands to the viewer (why not colors, levels,... ?).
 An example of usage may be:
 
-```bash
+```text
 ∼/B-CPE-200> ./lem_in < map | ./viewer
 ```
-
