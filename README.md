@@ -82,7 +82,9 @@ dependable.
 
 Concerning the following trivial anthill:
 
+```text
 [0] - - - [2] - - - [3] - - - [1]
+```
 
 ```text
 ∼/B-CPE-200> cat anthill
