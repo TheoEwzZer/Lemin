@@ -56,7 +56,6 @@ void add_to_path(node_t *current, var_t *var)
 void dfs(link_t *node, var_t *var)
 {
     node_t *current = NULL;
-
     node->visited = true;
     add_to_list(var, &var->path, node->data);
     if (node == var->end) {
