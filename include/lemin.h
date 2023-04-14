@@ -72,6 +72,7 @@ int send_ants(var_t *var);
 int sort_paths(var_t *var);
 int stock_end(var_t *var);
 int stock_start(var_t *var);
+link_t *check_restart(var_t *var, link_t *node);
 link_t *create_link(char *data);
 void add_to_list(var_t *var, list_t *list, char *data);
 void add_to_path(node_t *current, var_t *var);
