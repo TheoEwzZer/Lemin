@@ -47,8 +47,6 @@ int read_file2(var_t *var, char *line)
         my_strcat(var->output, "#tunnels\n");
         var->check_tunnels = true;
     }
-    if (var->check_tunnels && !is_tunnel(line))
-        return 84;
     my_strcat_ignore_hash(var->output, line);
     if (!var->check_tunnels) {
         if (create_rooms(var, getroom(line)) == 84)
