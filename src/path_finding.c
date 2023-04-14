@@ -67,7 +67,7 @@ void dfs(link_t *node, var_t *var)
         free_list(&var->path);
         node->visited = false;
         node->used = false;
-        node = var->graph;
+        node = check_restart(var, node);
     }
     for (size_t i = 0; i < node->next_nb; i++)
         dfs2(node, var, i);
