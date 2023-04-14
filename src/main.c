@@ -18,6 +18,7 @@ void init(var_t *var)
     var->room = NULL;
     var->check_tunnels = false;
     var->graph = NULL;
+    var->end = NULL;
     for (size_t i = 0; i < BUFFER_SIZE; i++)
         var->output[i] = '\0';
 }
