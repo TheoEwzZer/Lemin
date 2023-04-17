@@ -187,3 +187,13 @@ An example of usage may be:
 ```text
 ∼/B-CPE-200> ./lem_in < map | ./viewer
 ```
+
+## Final Mark
+
+### Mark: 30 / 33 (90.9%)
+
+- Algorithm App. (6 / 6)
+- Data Structure (1 / 3)
+- Parsing (9 / 9)
+- Optimization (2 / 2)
+- Robustness (12 / 13)
