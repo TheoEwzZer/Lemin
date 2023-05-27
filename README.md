@@ -11,8 +11,8 @@ For this project, the only authorized function are read, write, malloc, free and
 ```
 
 > Hex is an elaborate, magic-powered and self-building computer (not unlike the ‘shamble’, a kind of magical device used by the Witches of the Discworld) and is housed in the basement of the High Energy Magic Building at the Unseen University (UU) in the twin city of Ankh-Morpork.
-Hex is a computer unlike any other. Programmed via ‘Softlore’, Hex runs and evolves under the watchful eyes of wizard Ponder Stibbons, who becomes the de facto IT manager at UU because he’s the only one who understands what he’s talking about.
-Hex has its origins in a device created by some student Wizards in the High Energy Magic building. In this form it was simply a complex network of glass tubes, containing ants. The wizards could then use punched cards to control which tubes the ants could crawl through, enabling it to perform simple mathematical functions.
+> Hex is a computer unlike any other. Programmed via ‘Softlore’, Hex runs and evolves under the watchful eyes of wizard Ponder Stibbons, who becomes the de facto IT manager at UU because he’s the only one who understands what he’s talking about.
+> Hex has its origins in a device created by some student Wizards in the High Energy Magic building. In this form it was simply a complex network of glass tubes, containing ants. The wizards could then use punched cards to control which tubes the ants could crawl through, enabling it to perform simple mathematical functions.
 
 Let’s pay close attention to its calculation unit: an anthill with rooms and tunnels. A room can be connected to an infinite number of other rooms by as many tunnels as needed, but a tunnel can only connect two rooms.
 It would be nice to build one of our own, but since we’re not really into DIY, let’s make a high-tech version: a “Hex’ calculation unit” simulator.
@@ -96,9 +96,9 @@ Concerning the following trivial anthill:
 2 5 0
 # The next room is the kitchen
 3 9 0
-0-
-2-
-3-
+0-2
+2-3
+3-1
 ```
 
 ```text
@@ -113,15 +113,15 @@ Concerning the following trivial anthill:
 2 5 0
 3 9 0
 #tunnels
-0-
-2-
-3-
+0-2
+2-3
+3-1
 #moves
-P1-
-P1-3 P2-
-P1-1 P2-3 P3-
-P2-1 P3-
-P3-
+P1-2
+P1-3 P2-2
+P1-1 P2-3 P3-2
+P2-1 P3-3
+P3-1
 ```
 
 There you have it, it’s over after 5 laps.
@@ -145,11 +145,11 @@ Considering the following anthill:
 ##end
 1 9 2
 3 5 4
-0-
-0-
-2-
-3-
-2-
+0-2
+0-3
+2-1
+3-1
+2-3
 ```
 
 ```text
@@ -164,15 +164,15 @@ Considering the following anthill:
 1 9 2
 3 5 4
 #tunnels
-0-
-0-
-2-
-3-
-2-
+0-2
+0-3
+2-1
+3-1
+2-3
 #moves
-P1-2 P2-
-P1-1 P2-1 P3-
-P3-
+P1-2 P2-3
+P1-1 P2-1 P3-2
+P3-1
 ```
 
 It’s over after 3 laps.
